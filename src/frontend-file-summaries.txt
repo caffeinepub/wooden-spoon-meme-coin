@@ -1,0 +1,14 @@
+{
+  "frontend/src/App.tsx": "Main application component with tabbed interface for Wallet/Token, DAO Governance, and Treasury sections, featuring a hero banner with Wooden Spoon branding and complete layout with header and footer.",
+  "frontend/src/features/auth/WalletStatus.tsx": "Wallet connection component that displays Internet Identity login/logout controls and shows the connected principal in a compact format.",
+  "frontend/src/features/token/TokenBalanceCard.tsx": "Card component displaying token information (name, symbol, decimals) and the user's current WSPN token balance with the coin logo.",
+  "frontend/src/features/token/TransferForm.tsx": "Form component for transferring WSPN tokens to another principal with validation, loading states, and success/error feedback.",
+  "frontend/src/features/dao/CreateProposalForm.tsx": "Form for creating new DAO proposals with fields for title, description, recipient, amount, and voting duration with comprehensive validation.",
+  "frontend/src/features/dao/ProposalList.tsx": "List view of all proposals showing status badges, vote counts, and amounts with click-to-detail navigation.",
+  "frontend/src/features/dao/ProposalDetail.tsx": "Detailed proposal view with voting controls (yes/no/abstain), vote tallies with progress bars, and execution button for accepted proposals.",
+  "frontend/src/features/dao/daoStatus.ts": "Pure utility functions to compute proposal status (active/accepted/rejected/executed/expired) and determine available actions based on deadline and vote results.",
+  "frontend/src/features/treasury/TreasuryPanel.tsx": "Treasury dashboard displaying the DAO's total WSPN balance with explanatory messaging about proposal-based fund allocation.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations including token info, balances, proposals, transfers, voting, and proposal finalization with proper cache invalidation.",
+  "frontend/src/index.css": "Global styles with warm wood-inspired OKLCH color system for both light and dark modes, featuring earthy browns and natural tones instead of default blue/purple.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with custom font families (Inter, JetBrains Mono) and maintaining the wood-themed color tokens from index.css."
+}

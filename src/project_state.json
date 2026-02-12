@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build a Wooden Spoon-themed memecoin on the Internet Computer (ICP) with built-in DAO governance where each token represents a vote.",
+  "architectural_notes": [
+    "Target platform: Internet Computer (ICP).",
+    "Governance model: token-weighted voting (1 token = 1 vote)."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Memecoin logo illustration of a wooden spoon with playful meme-coin styling, transparent background (wooden-spoon-coin-logo.dim_512x512.png)\n- Wide banner/hero illustration with a wooden spoon motif, warm wood textures, and meme-like vibe (wooden-spoon-hero.dim_1600x600.png)\n- Small app icon featuring a simplified wooden spoon emblem, transparent background (wooden-spoon-icon.dim_128x128.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-simple-dao-treasury-mechanism-tied-to-the-token-a-dedicated-treasury-balance-controlled-by-the-canister-plus-ui-logic-to-view-treasury-balance-and-to-execute-accepted-treasury-transfer-proposals",
+      "title": "Create a simple DAO treasury mechanism tied to the token: a dedicated treasury balance controlled by the canister, plus UI/logic to view treasury balance and to execute accepted “treasury transfer” proposals.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-react-ui-for-the-wooden-spoon-memecoin-dao-that-works-with-internet-identity-connect-disconnect-show-the-logged-in-principal-show-token-balance-transfer-tokens-and-provide-dao-screens-to-create-proposals-browse-proposals-vote-and-execute-accepted-proposals",
+      "title": "Build a React UI for the Wooden Spoon memecoin + DAO that works with Internet Identity: connect/disconnect, show the logged-in principal, show token balance, transfer tokens, and provide DAO screens to create proposals, browse proposals, vote, and execute accepted proposals.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-coherent-wooden-spoon-memecoin-visual-theme-across-the-frontend-colors-typography-layout-and-key-components-inspired-by-playful-diy-wood-textures-and-meme-coin-energy-without-using-a-blue-purple-default-palette",
+      "title": "Apply a coherent “Wooden Spoon” memecoin visual theme across the frontend (colors, typography, layout, and key components) inspired by playful DIY/wood textures and meme-coin energy, without using a blue/purple default palette.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-generated-static-image-assets-for-the-wooden-spoon-memecoin-branding-and-render-them-in-the-ui-stored-under-frontend-public-assets-generated",
+      "title": "Add generated static image assets for the Wooden Spoon memecoin branding and render them in the UI (stored under frontend/public/assets/generated).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create a memecoin on ICP (Internet Computer) with token canister deployed on-chain",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Add DAO governance elements where each token equals one vote (token-weighted voting)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Brand/theme the token as the Wooden Spoon meme coin based on the iconic video",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Implement a Motoko canister that provides a fungible memecoin token (“Wooden Spoon”) with core on-chain functionality: token metadata (name, symbol, decimals), total supply, per-principal balances, and transfer between principals.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Add DAO governance to the same Motoko canister with token-weighted voting where each token equals one vote: proposal creation, proposal listing/detail, voting (yes/no/abstain), quorum/threshold rules, voting deadline, and proposal finalization/execution for at least one meaningful on-chain action.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Wooden Spoon Meme Coin",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

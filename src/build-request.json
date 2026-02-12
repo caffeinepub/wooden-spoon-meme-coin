@@ -1,0 +1,152 @@
+{
+  "kind": "build_request",
+  "title": "Wooden Spoon Memecoin with Token-Weighted DAO Governance (ICP)",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Implement a Motoko canister that provides a fungible memecoin token (“Wooden Spoon”) with core on-chain functionality: token metadata (name, symbol, decimals), total supply, per-principal balances, and transfer between principals.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "can you create a memecoin on icp directly with the dao elements"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes query functions for token metadata, total supply, and balanceOf(principal).",
+        "Backend exposes an update function to transfer tokens from the caller to a recipient principal with amount validation (no negative/zero, sufficient balance).",
+        "Token balances persist across canister upgrades (stable state)."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add DAO governance to the same Motoko canister with token-weighted voting where each token equals one vote: proposal creation, proposal listing/detail, voting (yes/no/abstain), quorum/threshold rules, voting deadline, and proposal finalization/execution for at least one meaningful on-chain action.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "with the dao elements. every token is a vote."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend supports creating a proposal with: title, description, creation time, voting end time, and an action payload (at minimum: a proposal to transfer tokens from a DAO treasury balance to a recipient).",
+        "Backend supports listing proposals and fetching a proposal by id, including current vote totals and status (active/accepted/rejected/executed/expired).",
+        "Voting weight is computed as the caller’s token balance at the time they vote; each principal can vote at most once per proposal.",
+        "Proposal transitions are enforced (cannot vote after end time; cannot execute unless accepted; cannot execute twice).",
+        "Quorum/threshold rules are implemented and documented in-code (e.g., minimum participation and yes-vote majority) and reflected in proposal status computation.",
+        "Governance state persists across upgrades (stable state)."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Create a simple DAO treasury mechanism tied to the token: a dedicated treasury balance controlled by the canister, plus UI/logic to view treasury balance and to execute accepted “treasury transfer” proposals.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "create a memecoin on icp directly with the dao elements"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend maintains a treasury token balance owned/controlled by the canister and exposes a query to read it.",
+        "Accepted proposals of type “treasury transfer” can be executed on-chain, moving tokens from treasury to the specified recipient and marking the proposal executed.",
+        "Frontend displays treasury balance and allows executing an accepted, unexecuted proposal (only when conditions are met)."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Build a React UI for the Wooden Spoon memecoin + DAO that works with Internet Identity: connect/disconnect, show the logged-in principal, show token balance, transfer tokens, and provide DAO screens to create proposals, browse proposals, vote, and execute accepted proposals.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "make it the wooden spoon meme coin"
+        ]
+      },
+      "acceptanceCriteria": [
+        "App supports Internet Identity login and shows the active principal when connected.",
+        "User can view their token balance and perform a transfer to a principal + amount, with clear success/error states.",
+        "User can create a proposal (title, description, duration/end time, and treasury transfer parameters).",
+        "User can browse proposals, open a proposal detail view, cast a vote, and see updated vote totals/status.",
+        "UI prevents invalid actions (e.g., voting after deadline, voting twice, executing rejected/already executed proposals) and displays explanatory messaging."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Apply a coherent “Wooden Spoon” memecoin visual theme across the frontend (colors, typography, layout, and key components) inspired by playful DIY/wood textures and meme-coin energy, without using a blue/purple default palette.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "make it the wooden spoon meme coin based on the iconic viceo"
+        ]
+      },
+      "acceptanceCriteria": [
+        "UI has a consistent theme (background, typography choices, button/input styling) and looks intentionally branded rather than default template styling.",
+        "Theme is applied consistently across wallet, token, and DAO screens.",
+        "User-facing text is in English and references the Wooden Spoon branding where appropriate (e.g., headings, labels)."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Add generated static image assets for the Wooden Spoon memecoin branding and render them in the UI (stored under frontend/public/assets/generated).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "wooden spoon meme coin based on the iconic viceo"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images exist under frontend/public/assets/generated with the specified filenames.",
+        "Frontend references these images directly as static assets (not fetched from the backend).",
+        "At least one image is used in the app header/landing area and one as a token/DAO emblem (e.g., icon next to token name)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor (no additional backend services).",
+    "Do not modify files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or any files under frontend/src/components/ui; compose them instead.",
+    "Authentication must use Internet Identity only.",
+    "No external databases or third-party backends."
+  ],
+  "nonGoals": [
+    "DEX/liquidity pool integration, listings, or exchange trading features.",
+    "Bridging to other chains or wallet integrations beyond Internet Identity.",
+    "Advanced DAO features like delegated voting, quadratic voting, or off-chain discussions.",
+    "Using or ingesting the referenced ‘iconic video’ content directly (no video hosting or extraction)."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Memecoin logo illustration of a wooden spoon with playful meme-coin styling, transparent background (wooden-spoon-coin-logo.dim_512x512.png)",
+      "Wide banner/hero illustration with a wooden spoon motif, warm wood textures, and meme-like vibe (wooden-spoon-hero.dim_1600x600.png)",
+      "Small app icon featuring a simplified wooden spoon emblem, transparent background (wooden-spoon-icon.dim_128x128.png)"
+    ],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [
+      "Build a memecoin on the Internet Computer with built-in DAO governance where tokens represent votes."
+    ],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

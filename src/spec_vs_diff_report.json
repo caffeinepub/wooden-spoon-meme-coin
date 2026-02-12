@@ -1,0 +1,106 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-12T22:26:15.658Z",
+  "summary": "Diff adds a new Motoko backend canister skeleton (token + proposal/voting structures) and a React frontend with wallet (Internet Identity), token transfer/balance UI, proposal create/list/detail UI, treasury balance panel, and a warm wood-inspired theme. However, several backend acceptance criteria (stable persistence, treasury mechanics, proposal execution/quorum/status APIs) and required static image assets are not evidenced in the diff summary.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Token balances persist across canister upgrades (stable state).",
+      "reason": "backend/main.mo shows balances as an in-memory Map and does not show any stable variables or preupgrade/postupgrade hooks to persist balances across upgrades.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "Backend supports listing proposals and fetching a proposal by id, including current vote totals and status (active/accepted/rejected/executed/expired).",
+      "reason": "Frontend expects actor methods like getAllProposals() and getProposal(), but the backend diff excerpt only shows createProposal and voteProposal; proposal listing/detail query methods and explicit status computation are not evidenced in the truncated backend snippet.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/features/dao/daoStatus.ts"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "Quorum/threshold rules are implemented and documented in-code and reflected in proposal status computation.",
+      "reason": "Frontend status logic uses a simple rule (yesVotes > noVotes and totalVotes > 0) and no quorum/threshold constants or documentation are evidenced in backend/main.mo excerpt.",
+      "evidence": [
+        "frontend/src/features/dao/daoStatus.ts",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "Proposal finalization/execution is enforced (cannot execute unless accepted; cannot execute twice) and governance state persists across upgrades (stable state).",
+      "reason": "Frontend calls a finalize/execution mutation (useFinalizeProposal), but the backend excerpt does not show any finalize/execute method; also proposals and votes are stored in non-stable Maps with no upgrade persistence shown.",
+      "evidence": [
+        "frontend/src/features/dao/ProposalDetail.tsx",
+        "frontend/src/hooks/useQueries.ts",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Backend maintains a DAO treasury token balance owned/controlled by the canister and exposes a query to read it.",
+      "reason": "backend/main.mo only shows var treasuryBalance = 0 and does not evidence a getTreasuryBalance() query, while the frontend expects actor.getTreasuryBalance().",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/features/treasury/TreasuryPanel.tsx"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Accepted proposals of type “treasury transfer” can be executed on-chain, moving tokens from treasury to recipient and marking proposal executed.",
+      "reason": "createProposal checks amount > treasuryBalance (initially 0) and no on-chain execution/treasury transfer function is evidenced in backend/main.mo excerpt; Proposal has an executed flag but no execution logic is shown.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Generated images exist under frontend/public/assets/generated with the specified filenames and are referenced as static assets in the UI.",
+      "reason": "UI references the required filenames, but the diff summary does not show the actual asset files under frontend/public/assets/generated (one added file was omitted due to limits, so presence cannot be confirmed).",
+      "evidence": [
+        "frontend/src/App.tsx",
+        "frontend/src/features/token/TokenBalanceCard.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Use of next-themes ThemeProvider and a light/dark theme system.",
+      "reason": "BuildRequest asks for a coherent visual theme but does not request a theme toggle/system; this appears as an extra implementation detail.",
+      "evidence": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css"
+      ]
+    }
+  ],
+  "confidence": 0.62,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/features/auth/WalletStatus.tsx",
+    "frontend/src/features/dao/CreateProposalForm.tsx",
+    "frontend/src/features/dao/ProposalDetail.tsx",
+    "frontend/src/features/dao/ProposalList.tsx",
+    "frontend/src/features/dao/daoStatus.ts",
+    "frontend/src/features/token/TokenBalanceCard.tsx",
+    "frontend/src/features/token/TransferForm.tsx",
+    "frontend/src/features/treasury/TreasuryPanel.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

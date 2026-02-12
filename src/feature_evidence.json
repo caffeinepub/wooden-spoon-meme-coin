@@ -1,0 +1,89 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-simple-dao-treasury-mechanism-tied-to-the-token-a-dedicated-treasury-balance-controlled-by-the-canister-plus-ui-logic-to-view-treasury-balance-and-to-execute-accepted-treasury-transfer-proposals",
+      "featureTitle": "Create a simple DAO treasury mechanism tied to the token: a dedicated treasury balance controlled by the canister, plus UI/logic to view treasury balance and to execute accepted “treasury transfer” proposals.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/features/dao/ProposalDetail.tsx",
+        "frontend/src/features/treasury/TreasuryPanel.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-a-react-ui-for-the-wooden-spoon-memecoin-dao-that-works-with-internet-identity-connect-disconnect-show-the-logged-in-principal-show-token-balance-transfer-tokens-and-provide-dao-screens-to-create-proposals-browse-proposals-vote-and-execute-accepted-proposals",
+      "featureTitle": "Build a React UI for the Wooden Spoon memecoin + DAO that works with Internet Identity: connect/disconnect, show the logged-in principal, show token balance, transfer tokens, and provide DAO screens to create proposals, browse proposals, vote, and execute accepted proposals.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/features/auth/WalletStatus.tsx",
+        "frontend/src/features/dao/CreateProposalForm.tsx",
+        "frontend/src/features/dao/ProposalDetail.tsx",
+        "frontend/src/features/dao/ProposalList.tsx",
+        "frontend/src/features/dao/daoStatus.ts",
+        "frontend/src/features/token/TokenBalanceCard.tsx",
+        "frontend/src/features/token/TransferForm.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-coherent-wooden-spoon-memecoin-visual-theme-across-the-frontend-colors-typography-layout-and-key-components-inspired-by-playful-diy-wood-textures-and-meme-coin-energy-without-using-a-blue-purple-default-palette",
+      "featureTitle": "Apply a coherent “Wooden Spoon” memecoin visual theme across the frontend (colors, typography, layout, and key components) inspired by playful DIY/wood textures and meme-coin energy, without using a blue/purple default palette.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-generated-static-image-assets-for-the-wooden-spoon-memecoin-branding-and-render-them-in-the-ui-stored-under-frontend-public-assets-generated",
+      "featureTitle": "Add generated static image assets for the Wooden Spoon memecoin branding and render them in the UI (stored under frontend/public/assets/generated).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/features/token/TokenBalanceCard.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

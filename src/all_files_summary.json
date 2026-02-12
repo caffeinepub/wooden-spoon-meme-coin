@@ -1,0 +1,23 @@
+{
+  "backend/main.mo": "Motoko canister implementing a token ledger and DAO proposal system with voting and treasury-controlled transfers.",
+  "feature_evidence.json": "Metadata file listing features, related source files, components, and test IDs for the Wooden Spoon DAO project.",
+  "frontend-file-summaries.txt": "Text file containing high-level summaries for various frontend components and configuration files.",
+  "frontend/index.css": "Global Tailwind-based stylesheet defining wood-themed OKLCH color variables for light and dark modes.",
+  "frontend/index.html": "Base HTML template loading the React app entrypoint into the root div.",
+  "frontend/src/App.tsx": "Main React app layout with header, hero banner, and tabbed sections for wallet, DAO, and treasury views.",
+  "frontend/src/features/auth/WalletStatus.tsx": "Component handling Internet Identity login/logout and displaying the connected principal.",
+  "frontend/src/features/dao/CreateProposalForm.tsx": "Form for creating DAO proposals with validation, identity checks, and mutation to backend canister.",
+  "frontend/src/features/dao/daoStatus.ts": "Computes a proposal's status based on deadline, execution state, and vote counts, returning flags for voting and execution.",
+  "frontend/src/features/dao/ProposalDetail.tsx": "Displays full details for a selected DAO proposal and provides voting and execution actions with status logic and user feedback.",
+  "frontend/src/features/dao/ProposalList.tsx": "Fetches and lists all proposals with status badges, handling loading and errors, and allows selecting a proposal for detailed view.",
+  "frontend/src/features/token/TokenBalanceCard.tsx": "Shows the connected user's token balance with loading and error handling, using token metadata for formatting.",
+  "frontend/src/features/token/TransferForm.tsx": "Provides a form to transfer tokens, including validation, submission handling, and user feedback for success or errors.",
+  "frontend/src/features/treasury/TreasuryPanel.tsx": "Displays the DAO treasury balance with loading and error states and explains how funds can be allocated via proposals.",
+  "frontend/src/hooks/useActor.ts": "Creates and caches an authenticated or anonymous backend actor, refreshing dependent queries when identity changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Implements a React context and provider for Internet Identity authentication, managing identity loading, login, logout, and status tracking using AuthClient.",
+  "frontend/src/hooks/useQueries.ts": "Defines React Query hooks for fetching token, balance, treasury, and proposal data and for mutating actions like transfers, proposal creation, and voting via the actor and identity.",
+  "frontend/src/index.css": "Provides Tailwind-based global styles and OKLCH theme variables for light and dark wooden-spoon-inspired UI themes.",
+  "frontend/src/main.tsx": "Bootstraps the React app, wrapping it with QueryClientProvider and InternetIdentityProvider.",
+  "frontend/tailwind.config.js": "Configures Tailwind with custom OKLCH color tokens, typography, container settings, animations, and extended theme values for the project’s visual style.",
+  "project_state.json": "Describes the project’s state, features, theme requirements, and pending requests for the Wooden Spoon memecoin and DAO on ICP."
+}

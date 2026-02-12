@@ -1,0 +1,151 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Wooden Spoon Memecoin + Token-Weighted DAO (ICP) — Frontend",
+  "requirements": [
+    {
+      "id": "REQ-3",
+      "summary": "Treasury UI to view DAO treasury balance and execute accepted treasury-transfer proposals.",
+      "acceptanceCriteria": [
+        "Frontend displays treasury balance and allows executing an accepted, unexecuted proposal (only when conditions are met)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/treasury/TreasuryPanel.tsx",
+          "operation": "create",
+          "description": "Create a TreasuryPanel that reads treasury balance via the existing actor (useActor) and renders an execute action for eligible proposals; include clear disabled states and explanatory messaging when execution is not allowed."
+        },
+        {
+          "path": "frontend/src/features/dao/ProposalDetail.tsx",
+          "operation": "create",
+          "description": "Create a proposal detail component that displays proposal fields (including recipient/amount) and conditionally exposes an Execute action when status indicates accepted and not executed; show success/error states after attempting execution."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Wire TreasuryPanel into the main DAO area so users can always see the treasury balance and execute eligible proposals from the proposal detail view."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "React UI with Internet Identity connect/disconnect, principal display, token balance + transfer, and DAO proposal creation/browsing/voting/execution.",
+      "acceptanceCriteria": [
+        "App supports Internet Identity login and shows the active principal when connected.",
+        "User can view their token balance and perform a transfer to a principal + amount, with clear success/error states.",
+        "User can create a proposal (title, description, duration/end time, and treasury transfer parameters).",
+        "User can browse proposals, open a proposal detail view, cast a vote, and see updated vote totals/status.",
+        "UI prevents invalid actions (e.g., voting after deadline, voting twice, executing rejected/already executed proposals) and displays explanatory messaging."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the main App shell composing existing hooks (useInternetIdentity, useActor) and providing a simple multi-section UI (wallet, token, DAO). Use shadcn-ui components (e.g., Button, Card, Input, Tabs, Alert/Toast where available) for consistent structure and states. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/auth/WalletStatus.tsx",
+          "operation": "create",
+          "description": "Create a WalletStatus component that uses useInternetIdentity to connect/disconnect and display the active principal (or an anonymous state). Use shadcn-ui for buttons/alerts. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/token/TokenBalanceCard.tsx",
+          "operation": "create",
+          "description": "Create a token balance card that loads token info + the caller balance from the actor and renders name/symbol/decimals + balance with loading/error states. Use shadcn-ui Card/Skeleton patterns where available. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/token/TransferForm.tsx",
+          "operation": "create",
+          "description": "Create a transfer form with recipient principal + amount inputs, client-side validation (non-empty, positive amount), and submit to actor transfer; show clear success/error states and refresh balance after success. Use shadcn-ui Form/Input/Button styling. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/dao/CreateProposalForm.tsx",
+          "operation": "create",
+          "description": "Create a proposal creation form for title, description, duration/end time input (duration-based per backend interface), recipient, amount; validate required fields and submit to createProposal; show created proposal id and refresh proposal list. Use shadcn-ui form components. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/dao/ProposalList.tsx",
+          "operation": "create",
+          "description": "Create a proposals list view that loads all proposals, supports selecting one for detail, and displays derived status (active/expired/executed etc.) based on deadline + executed flag and any available finalize result flow."
+        },
+        {
+          "path": "frontend/src/features/dao/ProposalDetail.tsx",
+          "operation": "create",
+          "description": "Create a proposal detail view that shows vote totals, deadline countdown/status, and voting controls (yes/no/abstain). Prevent voting when past deadline; after vote, refresh proposal data. Show explanatory messaging when voting is unavailable."
+        },
+        {
+          "path": "frontend/src/features/dao/useDaoQueries.ts",
+          "operation": "create",
+          "description": "Add React Query hooks/utilities to load token info, balance, treasury balance, proposals, and proposal detail through the actor returned by useActor; centralize query keys and refetch helpers."
+        },
+        {
+          "path": "frontend/src/features/dao/daoStatus.ts",
+          "operation": "create",
+          "description": "Add small pure helpers to compute UI status labels (active/expired/executed/ready-to-execute) from Proposal fields (deadline, executed) and current time; used to gate voting/execution buttons and messaging."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Apply a coherent Wooden Spoon visual theme across the UI (warm wood / DIY meme energy; no default blue/purple palette).",
+      "acceptanceCriteria": [
+        "UI has a consistent theme (background, typography choices, button/input styling) and looks intentionally branded rather than default template styling.",
+        "Theme is applied consistently across wallet, token, and DAO screens.",
+        "User-facing text is in English and references the Wooden Spoon branding where appropriate (e.g., headings, labels)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Create global styles and theme tokens (CSS variables) to implement a warm wood-inspired palette, textured background feel, and consistent typography; ensure Tailwind color tokens map to these variables and avoid blue/purple defaults."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust Tailwind theme extensions as needed to support the Wooden Spoon palette (via existing CSS variables), add any brand-specific fonts/spacing presets, and ensure consistent component styling across the app."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Apply branded layout (header + content container), consistent headings/labels in English referencing Wooden Spoon, and coherent spacing/typography across Wallet/Token/DAO sections; use shadcn-ui layout primitives where available. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Add generated Wooden Spoon branding images as static assets and render them in the UI.",
+      "acceptanceCriteria": [
+        "Generated images exist under frontend/public/assets/generated with the specified filenames.",
+        "Frontend references these images directly as static assets (not fetched from the backend).",
+        "At least one image is used in the app header/landing area and one as a token/DAO emblem (e.g., icon next to token name)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/wooden-spoon-coin-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated Wooden Spoon coin logo image asset at the exact path frontend/public/assets/generated/wooden-spoon-coin-logo.dim_512x512.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/wooden-spoon-hero.dim_1600x600.png",
+          "operation": "create",
+          "description": "Add the generated Wooden Spoon hero/banner image asset at the exact path frontend/public/assets/generated/wooden-spoon-hero.dim_1600x600.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/wooden-spoon-icon.dim_128x128.png",
+          "operation": "create",
+          "description": "Add the generated Wooden Spoon app icon image asset at the exact path frontend/public/assets/generated/wooden-spoon-icon.dim_128x128.png."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Render frontend/public/assets/generated/wooden-spoon-hero.dim_1600x600.png in the header/landing area and use frontend/public/assets/generated/wooden-spoon-icon.dim_128x128.png or frontend/public/assets/generated/wooden-spoon-coin-logo.dim_512x512.png as a token/DAO emblem next to the Wooden Spoon token name."
+        },
+        {
+          "path": "frontend/src/features/token/TokenBalanceCard.tsx",
+          "operation": "modify",
+          "description": "Display the token/DAO emblem image (frontend/public/assets/generated/wooden-spoon-coin-logo.dim_512x512.png or frontend/public/assets/generated/wooden-spoon-icon.dim_128x128.png) alongside token metadata to reinforce branding."
+        }
+      ]
+    }
+  ]
+}
